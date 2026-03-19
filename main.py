@@ -1,5 +1,8 @@
 from gtts import gTTS
+from googletrans import Translator
 import os
+
+translator = Translator()
 
 def language_selection():
     global language
@@ -40,11 +43,19 @@ def translation():
     f.write(text)
     f.close()
     
+    import asyncio
+
     f = open("text.txt", "r")
     
     input_text = f.read().replace("\n",'')
 
-    voice = gTTS(text=input_text, lang=language, slow=False)
+    async def get_translated_text(text, dest_lang):
+        result = await translator.translate(text, dest=dest_lang)
+        return result.text
+
+    translated_text = asyncio.run(get_translated_text(input_text, language))
+
+    voice = gTTS(text=translated_text, lang=language, slow=False)
 
     voice.save("text.mp3")  
 
