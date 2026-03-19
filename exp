@@ -25,3 +25,17 @@ try:
         language = 'en'
 except ValueError:
     print("Invalid input. Defaulting to English.")
+
+   
+   
+      print("Available languages:")
+    for code, name in languages:
+        print(f"{code}: {name}")
+
+    lang_input = input("Enter the language code (e.g., 'en' for English): ").strip().lower()
+    if lang_input in dict(languages):
+        language = lang_input
+        print(f"Selected language: {dict(languages)[language]}")
+    else:
+        print("Invalid language selection. Defaulting to English.")
+        language = 'en'

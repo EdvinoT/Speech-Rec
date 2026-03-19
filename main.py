@@ -2,6 +2,7 @@ from gtts import gTTS
 import os
 
 def language_selection():
+    global language
     print ("Welcome to the Text to Speech Converter!")
     print ("Select language")
 
@@ -15,15 +16,17 @@ def language_selection():
         ('ja', 'Japanese'),
         ('ko', 'Korean'),
         ('zh', 'Chinese')
-]
+    ]
 
-    print ("Available languages:" ,languages)
-    langs= input()
-    language= langs
+    print ("Available languages:",languages)
     
+
     for len in languages:
         print (len[1])
-
+    lang_input = input("Enter the language code (e.g., 'en' for English): ").strip().lower()
+    if lang_input in dict(languages):
+        language = lang_input
+        print(f"Selected language: {dict(languages)[language]}")
     else:
         print("Invalid language selection. Defaulting to English.")
         language = 'en'
