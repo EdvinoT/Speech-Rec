@@ -1,26 +1,34 @@
 from gtts import gTTS
 import os
 
-print ("Welcome to the Text to Speech Converter!")
-print ("Select language")
+def language_selection():
+    print ("Welcome to the Text to Speech Converter!")
+    print ("Select language")
 
-languages = [
-    ('en', 'English', 'english'),
-    ('es', 'Spanish', 'spanish'),
-    ('fr', 'French', 'french'),
-    ('de', 'German', 'german'),
-    ('it', 'Italian', 'italian'),
-    ('pt', 'Portuguese', 'portuguese'),
-    ('ja', 'Japanese', 'japanese'),
-    ('ko', 'Korean', 'korean'),
-    ('zh', 'Chinese', 'chinese')
+    languages = [
+        ('en', 'English'),
+        ('es', 'Spanish'),
+        ('fr', 'French'),
+        ('de', 'German'),
+        ('it', 'Italian'),
+        ('pt', 'Portuguese'),
+        ('ja', 'Japanese'),
+        ('ko', 'Korean'),
+        ('zh', 'Chinese')
 ]
 
-if lang in languages:
-    print(f"Selected language: {i}")
-else:
-    print("Invalid language selection. Defaulting to English.")
-    language = 'en'
+    print ("Available languages:" ,languages)
+    langs= input()
+    language= langs
+    
+    for len in languages:
+        print (len[1])
+
+    else:
+        print("Invalid language selection. Defaulting to English.")
+        language = 'en'
+
+
 
 def translation():
     print("Enter the text you want to convert to speech: ")
@@ -32,9 +40,6 @@ def translation():
     f = open("text.txt", "r")
     
     input_text = f.read().replace("\n",'')
-   
-    
-    language = 'en'
 
     voice = gTTS(text=input_text, lang=language, slow=False)
 
@@ -52,4 +57,6 @@ if os.name == ('nt'):
 else:
     os.system('clear')
 
+language_selection()
 translation()
+
